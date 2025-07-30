@@ -23,7 +23,6 @@ Thumbs.db
 Desktop.ini
 # Reports
 *.html
-*.xml
 # ExtentReports
 /ExtentReport.html
 /screenshots/
