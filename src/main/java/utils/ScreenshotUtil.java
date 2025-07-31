@@ -13,14 +13,14 @@ public class ScreenshotUtil {
         if (driver == null) return null;
         try {
             File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-            String folder = "target/screenshots/";
+            String folder = "target/report/screenshots/";
             String fileName = screenshotName + "_" + System.currentTimeMillis() + ".png";
             String destPath = folder + fileName;
             File destFile = new File(destPath);
             destFile.getParentFile().mkdirs();
             Files.copy(srcFile.toPath(), destFile.toPath());
             System.out.println("[DEBUG] Screenshot saved to: " + destFile.getAbsolutePath());
-            // Return path relative to report location (target/ExtentReport.html)
+            // Return path relative to report location (target/report/ExtentReport.html)
             return "screenshots/" + fileName;
         } catch (IOException e) {
             e.printStackTrace();
