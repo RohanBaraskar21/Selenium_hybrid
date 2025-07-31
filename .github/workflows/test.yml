@@ -46,16 +46,9 @@ jobs:
           HEADLESS: ${{ matrix.headless }}
         run: mvn clean test -Dbrowser=${{ matrix.browser }} -Dheadless=${{ matrix.headless }}
 
-      - name: Upload Extent Report
+      - name: Upload Report Folder (ExtentReport + Screenshots)
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: ExtentReport
+          name: Report
           path: target/report
-
-      - name: Upload Screenshots
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: Screenshots
-          path: target/report/screenshots
