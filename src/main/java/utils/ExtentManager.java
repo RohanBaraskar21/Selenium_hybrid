@@ -9,7 +9,7 @@ public class ExtentManager {
 
     public synchronized static ExtentReports getExtentReports() {
         if (extent == null) {
-            ExtentSparkReporter sparkReporter = new ExtentSparkReporter("target/ExtentReport.html");
+            ExtentSparkReporter sparkReporter = new ExtentSparkReporter("target/report/ExtentReport.html");
             sparkReporter.config().setTheme(Theme.DARK);
             sparkReporter.config().setDocumentTitle("Automation Test Results");
             sparkReporter.config().setReportName("Selenium POM Parallel TestNG Report");
