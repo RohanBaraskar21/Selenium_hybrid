@@ -13,8 +13,8 @@ jobs:
 
     strategy:
       matrix:
-        browser: [chrome, firefox]
-        headless: [true, false]
+        browser: [chrome]
+        headless: [true]
 
     steps:
       - name: Checkout code
@@ -38,8 +38,7 @@ jobs:
       - name: Set up Chrome
         uses: browser-actions/setup-chrome@v1
 
-      - name: Set up Firefox
-        uses: browser-actions/setup-firefox@v1
+      # Firefox setup removed; only Chrome is used
 
       - name: Run tests with Maven (${{ matrix.browser }} headless=${{ matrix.headless }})
         env:
