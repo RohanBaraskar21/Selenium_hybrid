@@ -51,11 +51,11 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ExtentReport
-          path: test-output/ExtentReport.html
+          path: target/ExtentReport.html
 
       - name: Upload Screenshots
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: Screenshots
-          path: test-output/screenshots
+          path: target/screenshots
