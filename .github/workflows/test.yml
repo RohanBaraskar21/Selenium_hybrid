@@ -9,13 +9,20 @@ on:
 
 jobs:
   build-and-test:
-    runs-on: ubuntu-latest
-
     strategy:
       fail-fast: false
       matrix:
-        browser: [chrome, firefox]
-        headless: [true]
+        include:
+          - os: ubuntu-latest
+            browser: chrome
+            headless: true
+          - os: ubuntu-latest
+            browser: firefox
+            headless: true
+          - os: macos-latest
+            browser: safari
+            headless: true
+    runs-on: ${{ matrix.os }}
 
     steps:
       - name: Checkout code
@@ -37,10 +44,16 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Set up Chrome
+        if: matrix.browser == 'chrome'
         uses: browser-actions/setup-chrome@v1
 
       - name: Set up Firefox
+        if: matrix.browser == 'firefox'
         uses: browser-actions/setup-firefox@v1
+
+      - name: Enable Safari Remote Automation
+        if: matrix.browser == 'safari'
+        run: sudo safaridriver --enable
 
       - name: Run tests with Maven (${{ matrix.browser }} headless=${{ matrix.headless }})
         env:
